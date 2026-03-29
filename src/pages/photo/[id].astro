@@ -37,6 +37,8 @@ function tagHref(tag) {
 
 const detectedFaces = faceData?.faces ?? [];
 const courtesyCredit = (item.credit_line ?? '').replace(', digitized and published by Jarad Ronald Peckenpaugh.', '.');
+const publicPhotoUrl = new URL(item.display.src, Astro.site ?? 'https://ronpyer.github.io').toString();
+const saveFilename = `RonPyer_${item.filename}`;
 ---
 
 <Layout title={`${item.filename} - Ronald Lee Pyer Photo Archive`}>
@@ -163,6 +165,18 @@ const courtesyCredit = (item.credit_line ?? '').replace(', digitized and publish
         <p class="actions">
           <a class="button primary" href={item.display.src} target="_blank" rel="noreferrer">Open larger image</a>
         </p>
+        <section class="metadata-panel drive-panel">
+          <h2>Save</h2>
+          <p class="explore-note">
+            Save this photo to your Google Drive.
+          </p>
+          <div
+            class="g-savetodrive"
+            data-src={publicPhotoUrl}
+            data-filename={saveFilename}
+            data-sitename="Ronald Lee Pyer Photgraphy"
+          ></div>
+        </section>
       </div>
     </section>
   </main>
@@ -180,6 +194,8 @@ const courtesyCredit = (item.credit_line ?? '').replace(', digitized and publish
       />
     </div>
   </div>
+
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 </Layout>
 
 <style>
@@ -290,6 +306,10 @@ const courtesyCredit = (item.credit_line ?? '').replace(', digitized and publish
   .metadata-panel h2 {
     margin: 0 0 0.75rem;
     font-size: 1rem;
+  }
+  .drive-panel .g-savetodrive {
+    display: inline-block;
+    margin-top: 0.35rem;
   }
   .panel-header {
     display: flex;
