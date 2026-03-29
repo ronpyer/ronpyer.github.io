@@ -22,9 +22,16 @@ pnpm-debug.log*
 __pycache__/
 *.pyc
 .venv/
+.venv-faces/
+.python-version
 
-# Docker/local runtime extras
+# local runtime extras
 *.pid
+.hf-cache/
+.torch-cache/
+data/archive.db
+data/enrichment/private/*
+!data/enrichment/private/.gitkeep
 
 # IMPORTANT:
 # Keep docs/ tracked because GitHub Pages will publish from /docs

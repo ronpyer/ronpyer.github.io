@@ -1,15 +1,20 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import archive from '../../data/archive.json';
+import descriptions from '../../data/enrichment/descriptions.json';
 
 export async function getStaticPaths() {
+  const descriptionById = new Map((descriptions.items ?? []).map((item) => [item.id, item]));
   return (archive.items ?? []).map((item) => ({
     params: { id: item.id },
-    props: { item },
+    props: {
+      item,
+      metadata: descriptionById.get(item.id) ?? null,
+    },
   }));
 }
 
-const { item } = Astro.props;
+const { item, metadata } = Astro.props;
 
 function formatBytes(bytes) {
   if (!bytes) return '0 B';
@@ -22,11 +27,15 @@ function formatBytes(bytes) {
   }
   return `${value.toFixed(unit === 0 ? 0 : 1)} ${units[unit]}`;
 }
+
+function tagHref(tag) {
+  return `/explore/?tag=${encodeURIComponent(tag)}`;
+}
 ---
 
 <Layout title={`${item.filename} - Ronald Lee Pyer Photo Archive`}>
   <main class="page">
-    <p class="back"><a href="/">← Back to archive</a></p>
+    <p class="back"><a href="/archive/">← Back to archive</a></p>
 
     <section class="hero panel">
       <div class="image-wrap">
@@ -41,8 +50,24 @@ function formatBytes(bytes) {
         <p class="eyebrow">Photo detail</p>
         <h1>{item.title ?? item.filename}</h1>
         <p class="lede">
-          Public archive preview image from the Ronald Lee Pyer collection.
+          {metadata?.description ?? 'Photograph from the Ronald Lee Pyer collection.'}
         </p>
+
+        {metadata?.tags?.length ? (
+          <section class="metadata-panel">
+            <h2>Generated tags</h2>
+            <div class="tags">
+              {metadata.tags.map((tag) => (
+                <a class={`tag ${tag.type}`} href={tagHref(tag.tag)}>
+                  {tag.tag}
+                </a>
+              ))}
+            </div>
+            <p class="explore-note">
+              These generated tags are browseable in the <a href="/explore/">metadata explorer</a>.
+            </p>
+          </section>
+        ) : null}
 
         <dl>
           <div><dt>Collection</dt><dd>{item.folder}</dd></div>
@@ -51,6 +76,7 @@ function formatBytes(bytes) {
           <div><dt>Scanner</dt><dd>{item.scanner_make ?? 'Unknown'} / {item.scanner_model ?? 'Unknown'}</dd></div>
           <div><dt>Software</dt><dd>{item.software ?? 'Unknown'}</dd></div>
           <div><dt>License</dt><dd>CC0 1.0 Universal</dd></div>
+          <div><dt>Browse with metadata</dt><dd><a href="/explore/">Open explorer</a></dd></div>
         </dl>
 
         <p class="credit"><strong>Suggested courtesy credit:</strong> {item.credit_line}</p>
@@ -112,6 +138,46 @@ function formatBytes(bytes) {
   .lede {
     color: var(--accent);
     line-height: 1.7;
+  }
+  .metadata-panel {
+    margin: 1.25rem 0 0.5rem;
+    padding: 1rem;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+  .metadata-panel h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag {
+    display: inline-block;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #14213d;
+    color: var(--text);
+    padding: 0.45rem 0.75rem;
+    font-size: 0.85rem;
+  }
+  .tag.zero-shot {
+    background: #1f2937;
+  }
+  .tag.keyword {
+    background: #14213d;
+  }
+  .tag.derived {
+    background: #19332d;
+  }
+  .explore-note {
+    margin: 0.85rem 0 0;
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
   }
   dl {
     margin: 1.5rem 0;
