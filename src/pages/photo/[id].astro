@@ -1,0 +1,155 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import archive from '../../data/archive.json';
+
+export async function getStaticPaths() {
+  return (archive.items ?? []).map((item) => ({
+    params: { id: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+
+function formatBytes(bytes) {
+  if (!bytes) return '0 B';
+  const units = ['B', 'KB', 'MB', 'GB'];
+  let value = bytes;
+  let unit = 0;
+  while (value >= 1024 && unit < units.length - 1) {
+    value /= 1024;
+    unit += 1;
+  }
+  return `${value.toFixed(unit === 0 ? 0 : 1)} ${units[unit]}`;
+}
+---
+
+<Layout title={`${item.filename} - Ronald Lee Pyer Photo Archive`}>
+  <main class="page">
+    <p class="back"><a href="/">← Back to archive</a></p>
+
+    <section class="hero panel">
+      <div class="image-wrap">
+        <img
+          src={item.display.src}
+          alt={item.filename}
+          width={item.display.width}
+          height={item.display.height}
+        />
+      </div>
+      <div class="meta">
+        <p class="eyebrow">Photo detail</p>
+        <h1>{item.title ?? item.filename}</h1>
+        <p class="lede">
+          Public archive preview image from the Ronald Lee Pyer collection.
+        </p>
+
+        <dl>
+          <div><dt>Collection</dt><dd>{item.folder}</dd></div>
+          <div><dt>Original size</dt><dd>{item.width} × {item.height}</dd></div>
+          <div><dt>File size</dt><dd>{formatBytes(item.size_bytes)}</dd></div>
+          <div><dt>Scanner</dt><dd>{item.scanner_make ?? 'Unknown'} / {item.scanner_model ?? 'Unknown'}</dd></div>
+          <div><dt>Software</dt><dd>{item.software ?? 'Unknown'}</dd></div>
+          <div><dt>License</dt><dd>CC0 1.0 Universal</dd></div>
+        </dl>
+
+        <p class="credit"><strong>Suggested courtesy credit:</strong> {item.credit_line}</p>
+
+        <p class="actions">
+          <a class="button primary" href={item.display.src} target="_blank" rel="noreferrer">Open larger image</a>
+        </p>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+  .back {
+    margin: 0 0 1rem;
+  }
+  .back a {
+    color: var(--muted);
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.25rem;
+  }
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .image-wrap {
+    background: #0b1220;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .image-wrap img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin: 0 0 0.75rem;
+  }
+  h1 {
+    margin: 0 0 0.8rem;
+    line-height: 1.1;
+  }
+  .lede {
+    color: var(--accent);
+    line-height: 1.7;
+  }
+  dl {
+    margin: 1.5rem 0;
+    display: grid;
+    gap: 0.85rem;
+  }
+  dl div {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+  }
+  dt {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+  }
+  dd {
+    margin: 0;
+    font-weight: 600;
+  }
+  .credit {
+    line-height: 1.7;
+  }
+  .button {
+    display: inline-block;
+    padding: 0.8rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+  }
+  .primary {
+    background: #e5e7eb;
+    color: #111827;
+    font-weight: 700;
+  }
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

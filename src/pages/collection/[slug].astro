@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import archive from '../../data/archive.json';
+
+export async function getStaticPaths() {
+  const grouped = new Map();
+  for (const item of archive.items ?? []) {
+    if (!grouped.has(item.folder)) grouped.set(item.folder, []);
+    grouped.get(item.folder).push(item);
+  }
+
+  return [...grouped.entries()].map(([folder, items]) => ({
+    params: {
+      slug: folder
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, ''),
+    },
+    props: { folder, items },
+  }));
+}
+
+const { folder, items } = Astro.props;
+---
+
+<Layout title={`${folder} - Ronald Lee Pyer Photo Archive`}>
+  <main class="page">
+    <p class="back"><a href="/">← Back to archive</a></p>
+
+    <section class="hero panel">
+      <p class="eyebrow">Collection</p>
+      <h1>{folder}</h1>
+      <p class="lede">Previewing {items.length} images from this collection grouping.</p>
+    </section>
+
+    <section class="panel">
+      <div class="grid">
+        {items.map((item) => (
+          <article class="photo-card">
+            <a href={`/photo/${item.id}/`}>
+              <img
+                src={item.thumb.src}
+                alt={item.filename}
+                width={item.thumb.width}
+                height={item.thumb.height}
+                loading="lazy"
+              />
+            </a>
+            <div class="card-body">
+              <p class="filename">{item.filename}</p>
+              <p class="meta">{item.width} × {item.height}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+  .back { margin: 0 0 1rem; }
+  .back a { color: var(--muted); }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin: 0 0 0.75rem;
+  }
+  h1 { margin: 0 0 0.8rem; }
+  .lede { margin: 0; color: var(--accent); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .photo-card {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .photo-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    background: #0b1220;
+  }
+  .card-body { padding: 0.9rem 1rem 1rem; }
+  .filename {
+    margin: 0 0 0.35rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+  }
+  .meta {
+    margin: 0.15rem 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+</style>
