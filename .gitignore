@@ -29,7 +29,6 @@ __pycache__/
 *.pid
 .hf-cache/
 .torch-cache/
-data/archive.db
 data/enrichment/private/*
 !data/enrichment/private/.gitkeep
 
