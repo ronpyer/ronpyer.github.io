@@ -195,7 +195,7 @@ def main() -> None:
     with conn:
         group_db_ids = {}
         for group_key in sorted(groups):
-            cur = conn.execute(
+            conn.execute(
                 """
                 INSERT INTO people_groups (group_key, label, source, run_id, is_active)
                 VALUES (?, NULL, 'face-cluster', ?, 1)
@@ -206,16 +206,13 @@ def main() -> None:
                 """,
                 (group_key, run_id),
             )
-            if cur.lastrowid:
-                group_db_ids[group_key] = int(cur.lastrowid)
-            else:
-                group_db_ids[group_key] = conn.execute(
-                    "SELECT id FROM people_groups WHERE group_key = ?",
-                    (group_key,),
-                ).fetchone()["id"]
+            group_db_ids[group_key] = conn.execute(
+                "SELECT id FROM people_groups WHERE group_key = ?",
+                (group_key,),
+            ).fetchone()["id"]
 
         for meta, vector in zip(embedding_index, embeddings):
-            cur = conn.execute(
+            conn.execute(
                 """
                 INSERT INTO face_detections (
                   photo_id, run_id, face_index, embedding_key, x1, y1, x2, y2, confidence, is_active
@@ -243,7 +240,7 @@ def main() -> None:
                     meta["confidence"],
                 ),
             )
-            face_detection_id = int(cur.lastrowid) if cur.lastrowid else conn.execute(
+            face_detection_id = conn.execute(
                 "SELECT id FROM face_detections WHERE embedding_key = ?",
                 (meta["embedding_id"],),
             ).fetchone()["id"]

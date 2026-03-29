@@ -1,0 +1,256 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import archive from '../../data/archive.json';
+import faces from '../../data/enrichment/faces.json';
+import people from '../../data/enrichment/people.json';
+
+export async function getStaticPaths() {
+  const archiveById = new Map((archive.items ?? []).map((item) => [item.id, item]));
+  const facesByPhotoId = new Map((faces.items ?? []).map((item) => [item.id, item]));
+  return (people.groups ?? []).map((group) => {
+    const photos = (group.photo_ids ?? [])
+      .map((photoId) => {
+        const photo = archiveById.get(photoId);
+        const faceData = facesByPhotoId.get(photoId);
+        const matchingFaces = faceData?.faces?.filter((face) => face.person_group_id === group.group_id) ?? [];
+        return photo
+          ? {
+              photo,
+              matchingFaces,
+            }
+          : null;
+      })
+      .filter(Boolean);
+
+    return {
+      params: { group: group.group_id },
+      props: {
+        group,
+        photos,
+      },
+    };
+  });
+}
+
+const { group, photos } = Astro.props;
+const archiveById = new Map((archive.items ?? []).map((item) => [item.id, item]));
+const facesByPhotoId = new Map((faces.items ?? []).map((item) => [item.id, item]));
+
+function cropStyle(photo, detection) {
+  const [x1, y1, x2, y2] = detection.box;
+  const width = x2 - x1;
+  const height = y2 - y1;
+  const centerX = x1 + width / 2;
+  const centerY = y1 + height / 2;
+  const targetCropSize = Math.max(width, height) * 1.5;
+  const zoom = 120 / targetCropSize;
+  const scaledWidth = photo.display.width * zoom;
+  const scaledHeight = photo.display.height * zoom;
+  const offsetX = 60 - centerX * zoom;
+  const offsetY = 60 - centerY * zoom;
+  return `width:${scaledWidth}px;height:${scaledHeight}px;transform:translate(${offsetX}px, ${offsetY}px);`;
+}
+---
+
+<Layout title={`${group.label ?? group.group_id} - Ronald Lee Pyer Photo Archive`}>
+  <main class="page">
+    <p class="back"><a href="/people/">← Back to people</a></p>
+
+    <section class="hero panel">
+      <div>
+        <p class="eyebrow">People group</p>
+        <h1>{group.label ?? group.group_id}</h1>
+        <p class="lede">
+          {group.face_count} detected faces across {group.photo_ids.length} photos.
+        </p>
+      </div>
+      <div class="hero-actions">
+        <a class="button" href="/">Open Explore</a>
+        <a class="button primary" href="/archive/">Open Archive</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Sample faces</h2>
+      <div class="sample-grid">
+        {group.sample_faces.map((sample) => {
+          const photo = archiveById.get(sample.photo_id);
+          const detection = facesByPhotoId.get(sample.photo_id)?.faces?.find((face) => face.face_index === sample.face_index);
+          if (!photo || !detection) return null;
+          return (
+            <a class="sample-card" href={`/photo/${sample.photo_id}/`}>
+              <div class="face-crop">
+                <img
+                  src={photo.display.src}
+                  alt={sample.photo_id}
+                  width={photo.display.width}
+                  height={photo.display.height}
+                  style={cropStyle(photo, detection)}
+                  loading="lazy"
+                />
+              </div>
+              <span>{sample.photo_id}</span>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+
+    <section class="photo-grid">
+      {photos.map((entry) => (
+        <article class="photo-card">
+          <a class="photo-link" href={`/photo/${entry.photo.id}/`}>
+            <img
+              src={entry.photo.thumb.src}
+              alt={entry.photo.filename}
+              width={entry.photo.thumb.width}
+              height={entry.photo.thumb.height}
+              loading="lazy"
+            />
+          </a>
+          <div class="card-body">
+            <h2><a href={`/photo/${entry.photo.id}/`}>{entry.photo.filename}</a></h2>
+            <p class="meta">{entry.photo.folder}</p>
+            <div class="face-tags">
+              {entry.matchingFaces.map((face) => (
+                <span class="face-tag">Face {face.face_index + 1}</span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 5rem;
+  }
+  .back {
+    margin: 0 0 1rem;
+  }
+  .back a {
+    color: var(--muted);
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.25rem;
+  }
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: end;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin: 0 0 0.75rem;
+  }
+  h1 {
+    margin: 0 0 0.75rem;
+    line-height: 1.05;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+  }
+  .lede,
+  .meta {
+    color: var(--muted);
+  }
+  .hero-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .button {
+    display: inline-block;
+    padding: 0.8rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+  }
+  .primary {
+    background: #e5e7eb;
+    color: #111827;
+    font-weight: 700;
+  }
+  .sample-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.9rem;
+    margin-top: 1rem;
+  }
+  .sample-card {
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .face-crop {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #0b1220;
+    border: 1px solid var(--border);
+  }
+  .face-crop img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    max-width: none;
+  }
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .photo-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .photo-link img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+    background: #0b1220;
+  }
+  .card-body {
+    padding: 1rem;
+  }
+  .card-body h2 {
+    margin: 0 0 0.45rem;
+    font-size: 1.05rem;
+  }
+  .face-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+  }
+  .face-tag {
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: #19332d;
+    color: var(--text);
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+  }
+  @media (max-width: 900px) {
+    .hero {
+      flex-direction: column;
+      align-items: start;
+    }
+  }
+</style>

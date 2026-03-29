@@ -2,19 +2,22 @@
 import Layout from '../../layouts/Layout.astro';
 import archive from '../../data/archive.json';
 import descriptions from '../../data/enrichment/descriptions.json';
+import faces from '../../data/enrichment/faces.json';
 
 export async function getStaticPaths() {
   const descriptionById = new Map((descriptions.items ?? []).map((item) => [item.id, item]));
+  const facesById = new Map((faces.items ?? []).map((item) => [item.id, item]));
   return (archive.items ?? []).map((item) => ({
     params: { id: item.id },
     props: {
       item,
       metadata: descriptionById.get(item.id) ?? null,
+      faceData: facesById.get(item.id) ?? null,
     },
   }));
 }
 
-const { item, metadata } = Astro.props;
+const { item, metadata, faceData } = Astro.props;
 
 function formatBytes(bytes) {
   if (!bytes) return '0 B';
@@ -31,20 +34,53 @@ function formatBytes(bytes) {
 function tagHref(tag) {
   return `/explore/?tag=${encodeURIComponent(tag)}`;
 }
+
+const detectedFaces = faceData?.faces ?? [];
 ---
 
 <Layout title={`${item.filename} - Ronald Lee Pyer Photo Archive`}>
   <main class="page">
-    <p class="back"><a href="/archive/">← Back to archive</a></p>
+    <p class="back">
+      <button type="button" class="back-button" onclick="if (window.history.length > 1) { window.history.back(); } else { window.location.href = '/'; }">
+        ← Back
+      </button>
+    </p>
 
     <section class="hero panel">
       <div class="image-wrap">
-        <img
-          src={item.display.src}
-          alt={item.filename}
-          width={item.display.width}
-          height={item.display.height}
-        />
+        <div class="image-stage">
+          <button
+            type="button"
+            class="lightbox-trigger"
+            id="open-photo-lightbox"
+            aria-label="Open photo fullscreen"
+          >
+            <img
+              src={item.display.src}
+              alt={item.filename}
+              width={item.display.width}
+              height={item.display.height}
+            />
+          </button>
+          {detectedFaces.length ? (
+            <div class="face-overlay" id="face-overlay" aria-hidden="true">
+              {detectedFaces.map((face) => {
+                const [left, top, right, bottom] = face.box;
+                const boxWidth = right - left;
+                const boxHeight = bottom - top;
+                return (
+                  <div
+                    class="face-box"
+                    style={`left:${(left / item.display.width) * 100}%;top:${(top / item.display.height) * 100}%;width:${(boxWidth / item.display.width) * 100}%;height:${(boxHeight / item.display.height) * 100}%;`}
+                    title={`Face ${face.face_index + 1}`}
+                  >
+                    <span>Face {face.face_index + 1}</span>
+                  </div>
+                );
+              })}
+            </div>
+          ) : null}
+        </div>
       </div>
       <div class="meta">
         <p class="eyebrow">Photo detail</p>
@@ -69,6 +105,47 @@ function tagHref(tag) {
           </section>
         ) : null}
 
+        {detectedFaces.length ? (
+          <section class="metadata-panel">
+            <div class="panel-header">
+              <h2>Detected faces</h2>
+              <button
+                type="button"
+                class="toggle-button"
+                id="toggle-face-boxes"
+                aria-controls="face-overlay"
+                aria-pressed="true"
+              >
+                Hide boxes
+              </button>
+            </div>
+            <p class="explore-note face-summary">
+              {detectedFaces.length} {detectedFaces.length === 1 ? 'face' : 'faces'} detected in this photograph.
+            </p>
+            <div class="face-list">
+              {detectedFaces.map((face) => (
+                <div class="face-row">
+                  <span>
+                    {face.person_group_id ? (
+                      <a href={`/people/${face.person_group_id}/`}>Face {face.face_index + 1}</a>
+                    ) : (
+                      `Face ${face.face_index + 1}`
+                    )}
+                  </span>
+                  <span>{Math.round(face.confidence * 100)}%</span>
+                  <span>
+                    {face.person_group_id ? (
+                      <a href={`/people/${face.person_group_id}/`}>{face.person_group_id}</a>
+                    ) : (
+                      'Unclustered'
+                    )}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         <dl>
           <div><dt>Collection</dt><dd>{item.folder}</dd></div>
           <div><dt>Original size</dt><dd>{item.width} × {item.height}</dd></div>
@@ -77,6 +154,7 @@ function tagHref(tag) {
           <div><dt>Software</dt><dd>{item.software ?? 'Unknown'}</dd></div>
           <div><dt>License</dt><dd>CC0 1.0 Universal</dd></div>
           <div><dt>Browse with metadata</dt><dd><a href="/explore/">Open explorer</a></dd></div>
+          <div><dt>People</dt><dd><a href="/people/">Browse people</a></dd></div>
         </dl>
 
         <p class="credit"><strong>Suggested courtesy credit:</strong> {item.credit_line}</p>
@@ -87,6 +165,20 @@ function tagHref(tag) {
       </div>
     </section>
   </main>
+
+  <div class="lightbox" id="photo-lightbox" hidden>
+    <button type="button" class="lightbox-close" id="close-photo-lightbox" aria-label="Close photo fullscreen">
+      Close
+    </button>
+    <div class="lightbox-inner">
+      <img
+        src={item.display.src}
+        alt={item.filename}
+        width={item.display.width}
+        height={item.display.height}
+      />
+    </div>
+  </div>
 </Layout>
 
 <style>
@@ -98,8 +190,19 @@ function tagHref(tag) {
   .back {
     margin: 0 0 1rem;
   }
-  .back a {
+  .back-button {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: transparent;
     color: var(--muted);
+    border-radius: 999px;
+    padding: 0.65rem 0.9rem;
+    font: inherit;
+    cursor: pointer;
+  }
+  .back-button:hover {
+    color: var(--muted);
+    background: rgba(148, 163, 184, 0.08);
   }
   .panel {
     background: var(--panel);
@@ -119,10 +222,47 @@ function tagHref(tag) {
     overflow: hidden;
     border: 1px solid var(--border);
   }
+  .image-stage {
+    position: relative;
+  }
+  .lightbox-trigger {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+  }
   .image-wrap img {
     display: block;
     width: 100%;
     height: auto;
+  }
+  .face-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .face-overlay.is-hidden {
+    display: none;
+  }
+  .face-box {
+    position: absolute;
+    border: 2px solid #f59e0b;
+    background: rgba(245, 158, 11, 0.14);
+    box-shadow: 0 0 0 1px rgba(17, 24, 39, 0.45) inset;
+  }
+  .face-box span {
+    position: absolute;
+    left: -1px;
+    top: -1.6rem;
+    background: #f59e0b;
+    color: #111827;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.45rem;
+    border-radius: 999px;
+    white-space: nowrap;
   }
   .eyebrow {
     text-transform: uppercase;
@@ -149,6 +289,30 @@ function tagHref(tag) {
   .metadata-panel h2 {
     margin: 0 0 0.75rem;
     font-size: 1rem;
+  }
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  .panel-header h2 {
+    margin: 0;
+  }
+  .toggle-button {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    border-radius: 999px;
+    padding: 0.45rem 0.8rem;
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .toggle-button:hover {
+    background: rgba(229, 231, 235, 0.08);
   }
   .tags {
     display: flex;
@@ -178,6 +342,24 @@ function tagHref(tag) {
     color: var(--muted);
     line-height: 1.6;
     font-size: 0.95rem;
+  }
+  .face-summary {
+    margin-top: 0;
+  }
+  .face-list {
+    display: grid;
+    gap: 0.55rem;
+  }
+  .face-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(11, 18, 32, 0.45);
+    font-size: 0.9rem;
   }
   dl {
     margin: 1.5rem 0;
@@ -213,9 +395,111 @@ function tagHref(tag) {
     color: #111827;
     font-weight: 700;
   }
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(15, 23, 42, 0.96);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox[hidden] {
+    display: none;
+  }
+  .lightbox-inner {
+    width: min(100vw - 3rem, 1800px);
+    height: min(100vh - 3rem, 1200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox-inner img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    appearance: none;
+    border: 1px solid rgba(229, 231, 235, 0.22);
+    background: rgba(15, 23, 42, 0.85);
+    color: var(--text);
+    border-radius: 999px;
+    padding: 0.7rem 1rem;
+    font: inherit;
+    cursor: pointer;
+  }
   @media (max-width: 900px) {
     .hero {
       grid-template-columns: 1fr;
     }
+    .face-box span {
+      top: 0.25rem;
+      left: 0.25rem;
+    }
+    .face-row {
+      grid-template-columns: 1fr;
+    }
+    .panel-header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .lightbox {
+      padding: 1rem;
+    }
+    .lightbox-inner {
+      width: calc(100vw - 2rem);
+      height: calc(100vh - 2rem);
+    }
   }
 </style>
+
+<script>
+  const toggleButton = document.getElementById('toggle-face-boxes');
+  const faceOverlay = document.getElementById('face-overlay');
+  const lightbox = document.getElementById('photo-lightbox');
+  const openLightboxButton = document.getElementById('open-photo-lightbox');
+  const closeLightboxButton = document.getElementById('close-photo-lightbox');
+
+  if (toggleButton && faceOverlay) {
+    toggleButton.addEventListener('click', () => {
+      const isHidden = faceOverlay.classList.toggle('is-hidden');
+      toggleButton.textContent = isHidden ? 'Show boxes' : 'Hide boxes';
+      toggleButton.setAttribute('aria-pressed', String(!isHidden));
+    });
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  if (lightbox && openLightboxButton && closeLightboxButton) {
+    openLightboxButton.addEventListener('click', () => {
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeLightboxButton.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !lightbox.hidden) {
+        closeLightbox();
+      }
+    });
+  }
+</script>

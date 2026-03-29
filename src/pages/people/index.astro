@@ -1,0 +1,211 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import archive from '../../data/archive.json';
+import faces from '../../data/enrichment/faces.json';
+import people from '../../data/enrichment/people.json';
+
+const archiveById = new Map((archive.items ?? []).map((item) => [item.id, item]));
+const facesByPhotoId = new Map((faces.items ?? []).map((item) => [item.id, item]));
+
+const groups = (people.groups ?? [])
+  .map((group) => {
+    const coverFace = group.sample_faces?.[0];
+    const coverPhoto = coverFace ? archiveById.get(coverFace.photo_id) : null;
+    const faceData = coverFace ? facesByPhotoId.get(coverFace.photo_id) : null;
+    const coverDetection = faceData?.faces?.find((face) => face.face_index === coverFace.face_index) ?? null;
+    return {
+      ...group,
+      coverPhoto,
+      coverDetection,
+      photoCount: group.photo_ids?.length ?? 0,
+    };
+  })
+  .filter((group) => group.face_count >= 2 && group.coverPhoto && group.coverDetection)
+  .sort((a, b) => b.face_count - a.face_count || b.photoCount - a.photoCount || a.group_id.localeCompare(b.group_id));
+
+function cropStyle(photo, detection) {
+  const [x1, y1, x2, y2] = detection.box;
+  const width = x2 - x1;
+  const height = y2 - y1;
+  const centerX = x1 + width / 2;
+  const centerY = y1 + height / 2;
+  const targetCropSize = Math.max(width, height) * 1.5;
+  const zoom = 220 / targetCropSize;
+  const scaledWidth = photo.display.width * zoom;
+  const scaledHeight = photo.display.height * zoom;
+  const offsetX = 110 - centerX * zoom;
+  const offsetY = 110 - centerY * zoom;
+  return `width:${scaledWidth}px;height:${scaledHeight}px;transform:translate(${offsetX}px, ${offsetY}px);`;
+}
+---
+
+<Layout title="People - Ronald Lee Pyer Photo Archive">
+  <main class="page">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">People</p>
+        <h1>Tentative people groupings across the archive.</h1>
+        <p class="lede">
+          These clusters are generated from face similarity and are intended for family browsing, not formal identification.
+        </p>
+      </div>
+      <div class="hero-actions">
+        <a class="button" href="/">Open Explore</a>
+        <a class="button primary" href="/archive/">Open Archive</a>
+      </div>
+    </section>
+
+    <section class="panel summary">
+      <div>
+        <strong>{groups.length}</strong>
+        <span> people groups</span>
+      </div>
+      <div>
+        <strong>{groups.reduce((total, group) => total + group.face_count, 0)}</strong>
+        <span> grouped faces</span>
+      </div>
+    </section>
+
+    <section class="group-grid">
+      {groups.map((group) => (
+        <article class="group-card">
+          <a class="group-link" href={`/people/${group.group_id}/`}>
+            <div class="face-crop">
+              <img
+                src={group.coverPhoto.display.src}
+                alt={group.group_id}
+                width={group.coverPhoto.display.width}
+                height={group.coverPhoto.display.height}
+                style={cropStyle(group.coverPhoto, group.coverDetection)}
+                loading="lazy"
+              />
+            </div>
+            <div class="card-body">
+              <p class="group-label">{group.label ?? group.group_id}</p>
+              <h2>{group.photoCount} photos</h2>
+              <p class="meta">{group.face_count} detected faces</p>
+            </div>
+          </a>
+        </article>
+      ))}
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1260px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 5rem;
+  }
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 1.5rem;
+  }
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin: 0 0 0.75rem;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.05;
+    margin: 0 0 1rem;
+    max-width: 14ch;
+  }
+  .lede {
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 60ch;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.1rem;
+  }
+  .summary {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+  .summary strong {
+    font-size: 1.3rem;
+  }
+  .group-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .group-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .group-link {
+    display: block;
+  }
+  .face-crop {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    background: #0b1220;
+  }
+  .face-crop img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    max-width: none;
+  }
+  .card-body {
+    padding: 1rem;
+  }
+  .group-label,
+  .meta {
+    color: var(--muted);
+    margin: 0;
+  }
+  .group-label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    margin-bottom: 0.45rem;
+  }
+  .card-body h2 {
+    margin: 0 0 0.4rem;
+    font-size: 1.15rem;
+  }
+  .button {
+    display: inline-block;
+    padding: 0.8rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+  }
+  .primary {
+    background: #e5e7eb;
+    color: #111827;
+    font-weight: 700;
+  }
+  @media (max-width: 900px) {
+    .hero {
+      flex-direction: column;
+      align-items: start;
+    }
+    .summary {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+</style>

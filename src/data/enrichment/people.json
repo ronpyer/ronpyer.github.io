@@ -1,5 +1,1355 @@
 {
   "schema_version": 1,
-  "group_count": 0,
-  "groups": []
+  "group_count": 46,
+  "groups": [
+    {
+      "group_id": "person-group-0000",
+      "label": null,
+      "face_count": 4,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0001.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0054.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0055.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0081.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0001.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0001.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0054.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0054.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0055.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0055.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0081.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0081.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0001",
+      "label": null,
+      "face_count": 13,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0001.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0112.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0133.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0135.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0136.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0176.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0177.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0078.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0079.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0080.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0259.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0260.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0262.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0001.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0001.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0112.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0112.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0133.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0133.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0135.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0135.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0136.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0136.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0176.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0176.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0002",
+      "label": null,
+      "face_count": 44,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0002.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0036.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0050.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0051.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0052.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0054.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0087.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0099.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0109.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0117.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0118.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0119.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0120.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0147.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0177.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0197.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0070.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0071.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0072.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0073.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0074.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0075.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0076.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0077.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0082.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0129.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0130.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0131.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0132.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0140.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0214.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0215.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0230.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0231.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0232.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0252.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0275.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0276.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0277.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0278.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0002.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0002.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0036.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0036.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0050.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0050.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0051.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0051.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0052.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0052.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0054.JPG",
+          "face_index": 2,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0054.JPG::face-2"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0003",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0013.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0014.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0013.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0013.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0014.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0014.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0004",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0013.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0014.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0013.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0013.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0014.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0014.JPG::face-1"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0005",
+      "label": null,
+      "face_count": 20,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0016.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0035.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0043.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0056.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0068.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0069.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0133.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0183.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0191.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0197.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0261.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0048.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0156.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0200.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0264.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0313.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0318.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0016.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0016.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0035.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0035.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0035.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0035.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0043.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0043.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0056.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0056.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0068.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0068.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0006",
+      "label": null,
+      "face_count": 3,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0027.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0028.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0150.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0027.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0027.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0028.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0028.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0150.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0150.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0007",
+      "label": null,
+      "face_count": 3,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0029.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0060.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0061.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0029.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0029.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0060.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0060.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0061.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0061.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0008",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0032.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0033.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0032.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0032.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0033.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0033.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0009",
+      "label": null,
+      "face_count": 8,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0043.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0050.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0108.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0139.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0140.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0168.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0253.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0043.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0043.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0050.JPG",
+          "face_index": 2,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0050.JPG::face-2"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0108.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0108.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0139.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0139.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0140.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0140.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0168.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0168.JPG::face-1"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0010",
+      "label": null,
+      "face_count": 3,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0045.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0054.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0055.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0045.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0045.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0054.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0054.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0055.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0055.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0011",
+      "label": null,
+      "face_count": 3,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0045.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0046.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0048.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0045.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0045.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0046.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0046.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0048.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0048.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0012",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0045.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0045.JPG",
+          "face_index": 2,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0045.JPG::face-2"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0045.JPG",
+          "face_index": 4,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0045.JPG::face-4"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0013",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0060.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0061.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0060.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0060.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0061.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0061.JPG::face-1"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0014",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0071.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0219.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0071.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0071.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0219.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0219.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0015",
+      "label": null,
+      "face_count": 7,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0073.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0091.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0195.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0086.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0087.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0088.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0089.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0073.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0073.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0091.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0091.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0195.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0195.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0086.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0086.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0087.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0087.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0088.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0088.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0016",
+      "label": null,
+      "face_count": 3,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0075.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0155.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0158.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0075.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0075.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0155.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0155.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0158.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0158.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0017",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0075.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0158.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0075.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0075.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0158.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0158.JPG::face-1"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0018",
+      "label": null,
+      "face_count": 3,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0077.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0230.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0231.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0077.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0077.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0230.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0230.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0231.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0231.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0019",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0081.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0324.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0081.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0081.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0324.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0324.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0020",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0082.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0134.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0082.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0082.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0134.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0134.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0021",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0083.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0092.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0083.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0083.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0092.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0092.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0022",
+      "label": null,
+      "face_count": 4,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0085.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0111.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0326.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0327.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0085.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0085.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0111.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0111.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0326.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0326.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0327.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0327.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0023",
+      "label": null,
+      "face_count": 4,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0085.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0138.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0323.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0326.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0085.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0085.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0138.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0138.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0323.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0323.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0326.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0326.JPG::face-1"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0024",
+      "label": null,
+      "face_count": 6,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0086.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0266.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0032.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0046.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0108.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0297.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0086.JPG",
+          "face_index": 2,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0086.JPG::face-2"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0266.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0266.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0032.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0032.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0046.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0046.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0108.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0108.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0297.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0297.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0025",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0094.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0084.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0094.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0094.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0084.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0084.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0026",
+      "label": null,
+      "face_count": 6,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0095.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0096.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0097.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0141.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0143.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0144.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0095.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0095.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0096.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0096.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0097.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0097.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0141.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0141.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0143.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0143.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0144.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0144.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0027",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0100.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0251.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0100.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0100.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0251.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0251.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0028",
+      "label": null,
+      "face_count": 6,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0101.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0202.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0203.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0205.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0206.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0207.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0101.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0101.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0202.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0202.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0203.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0203.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0205.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0205.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0206.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0206.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0207.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0207.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0029",
+      "label": null,
+      "face_count": 5,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0102.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0103.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0104.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0105.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0165.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0102.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0102.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0103.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0103.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0104.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0104.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0105.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0105.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0165.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0165.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0030",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0108.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0254.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0108.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0108.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0254.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0254.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0031",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0110.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0218.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0110.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0110.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0218.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0218.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0032",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0113.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0083.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0113.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0113.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0083.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0083.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0033",
+      "label": null,
+      "face_count": 3,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0114.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0296.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0297.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0114.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0114.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0296.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0296.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0297.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0297.JPG::face-1"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0034",
+      "label": null,
+      "face_count": 5,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0115.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0116.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0123.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0155.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0156.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0115.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0115.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0116.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0116.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0123.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0123.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0155.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0155.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0156.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0156.JPG::face-1"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0035",
+      "label": null,
+      "face_count": 3,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0115.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0116.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0159.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0115.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0115.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0116.JPG",
+          "face_index": 1,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0116.JPG::face-1"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0159.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0159.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0036",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0124.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0208.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0124.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0124.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0208.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0208.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0037",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0125.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0209.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0125.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0125.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0209.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0209.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0038",
+      "label": null,
+      "face_count": 4,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0129.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0130.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0103.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0104.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0129.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0129.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0130.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0130.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0103.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0103.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0104.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0104.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0039",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0131.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0094.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0131.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0131.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0094.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0094.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0040",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0134.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0280.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0134.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0134.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0280.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0280.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0041",
+      "label": null,
+      "face_count": 3,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0156.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0157.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0160.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0156.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0156.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0157.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0157.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0160.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0160.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0042",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0162.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0102.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0162.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0162.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0102.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0102.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0043",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0192.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0193.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0192.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0192.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0193.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0193.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0044",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 1 - 10__IMAG0195.JPG",
+        "Book 1 - Sheets 1 - 10__IMAG0196.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0195.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0195.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 1 - 10__IMAG0196.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 1 - 10__IMAG0196.JPG::face-0"
+        }
+      ]
+    },
+    {
+      "group_id": "person-group-0045",
+      "label": null,
+      "face_count": 2,
+      "photo_ids": [
+        "Book 1 - Sheets 11 - 20__IMAG0114.JPG",
+        "Book 1 - Sheets 11 - 20__IMAG0293.JPG"
+      ],
+      "sample_faces": [
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0114.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0114.JPG::face-0"
+        },
+        {
+          "photo_id": "Book 1 - Sheets 11 - 20__IMAG0293.JPG",
+          "face_index": 0,
+          "embedding_id": "Book 1 - Sheets 11 - 20__IMAG0293.JPG::face-0"
+        }
+      ]
+    }
+  ]
 }
