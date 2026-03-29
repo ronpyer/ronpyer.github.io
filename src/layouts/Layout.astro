@@ -1,5 +1,7 @@
 ---
+const brand = 'Ronald Lee Pyer Photgraphy';
 const { title = 'Ronald Lee Pyer Photo Archive' } = Astro.props;
+const pageTitle = title === brand ? brand : `${brand} | ${title}`;
 ---
 
 <!doctype html>
@@ -10,9 +12,12 @@ const { title = 'Ronald Lee Pyer Photo Archive' } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{pageTitle}</title>
   </head>
   <body>
+    <header class="site-header">
+      <a href="/" class="site-brand">{brand}</a>
+    </header>
     <slot />
   </body>
 </html>
@@ -42,5 +47,16 @@ const { title = 'Ronald Lee Pyer Photo Archive' } = Astro.props;
   a {
     color: inherit;
     text-decoration: none;
+  }
+
+  .site-header {
+    padding: 0.9rem 1.25rem 0;
+  }
+
+  .site-brand {
+    display: inline-block;
+    color: var(--muted);
+    font-size: 1.1rem;
+    letter-spacing: 0.01em;
   }
 </style>

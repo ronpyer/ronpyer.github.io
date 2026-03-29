@@ -28,8 +28,8 @@ for (const item of items) {
 }
 const topTags = [...tagCounts.entries()]
   .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-  .slice(0, 24)
   .map(([tag, count]) => ({ tag, count }));
+const defaultTagCount = 100;
 
 function formatBytes(bytes) {
   if (!bytes) return '0 B';
@@ -52,7 +52,6 @@ function formatBytes(bytes) {
       </div>
       <div class="hero-actions">
         <a class="button" href="/people/">Browse People</a>
-        <a class="button primary" href="/archive/">Open Archive</a>
       </div>
     </section>
 
@@ -79,12 +78,17 @@ function formatBytes(bytes) {
 
     <section class="panel quick-tags">
       <div class="section-header">
-        <h2>Common tags</h2>
+        <div class="section-title">
+          <h2>Tags</h2>
+          <button type="button" class="toggle-tags-button" id="toggleTagsButton" aria-controls="tagList" aria-expanded="false">
+            More
+          </button>
+        </div>
         <p id="resultsCount">{items.length} photos</p>
       </div>
-      <div class="tag-list">
+      <div class="tag-list" id="tagList">
         {topTags.map((entry) => (
-          <button class="tag-chip" type="button" data-tag-chip={entry.tag}>
+          <button class="tag-chip" type="button" data-tag-chip={entry.tag} data-tag-rank={topTags.findIndex((item) => item.tag === entry.tag)}>
             {entry.tag} <span>{entry.count}</span>
           </button>
         ))}
@@ -109,15 +113,7 @@ function formatBytes(bytes) {
             />
           </a>
           <div class="card-body">
-            <p class="collection">{item.folder}</p>
             <h2 class="caption"><a href={`/photo/${item.id}/`}>{item.description}</a></h2>
-            <p class="filename">{item.filename}</p>
-            <p class="meta">{item.width} × {item.height} · {formatBytes(item.size_bytes)}</p>
-            <div class="tags">
-              {item.tags.slice(0, 6).map((tag) => (
-                <span class={`tag ${tag.type}`}>{tag.tag}</span>
-              ))}
-            </div>
           </div>
         </article>
       ))}
@@ -131,6 +127,8 @@ function formatBytes(bytes) {
     const cards = Array.from(document.querySelectorAll('.photo-card'));
     const resultsCount = document.getElementById('resultsCount');
     const chips = Array.from(document.querySelectorAll('[data-tag-chip]'));
+    const toggleTagsButton = document.getElementById('toggleTagsButton');
+    const defaultTagCount = 100;
 
     function applyFilters() {
       const search = searchInput?.value.trim().toLowerCase() ?? '';
@@ -168,6 +166,24 @@ function formatBytes(bytes) {
         applyFilters();
       });
     }
+
+    function applyTagVisibility(showAll = false) {
+      for (const chip of chips) {
+        const rank = Number(chip.dataset.tagRank ?? '0');
+        chip.classList.toggle('is-hidden', !showAll && rank >= defaultTagCount);
+      }
+      if (toggleTagsButton) {
+        toggleTagsButton.textContent = showAll ? 'Less' : 'More';
+        toggleTagsButton.setAttribute('aria-expanded', String(showAll));
+      }
+    }
+
+    applyTagVisibility(false);
+
+    toggleTagsButton?.addEventListener('click', () => {
+      const showAll = toggleTagsButton.getAttribute('aria-expanded') !== 'true';
+      applyTagVisibility(showAll);
+    });
   </script>
 </Layout>
 
@@ -185,7 +201,7 @@ function formatBytes(bytes) {
     margin-bottom: 1.5rem;
   }
   h1 {
-    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-size: clamp(1.35rem, 2.4vw, 2rem);
     line-height: 1.05;
     margin: 0 0 1rem;
     max-width: 14ch;
@@ -223,6 +239,11 @@ function formatBytes(bytes) {
     align-items: baseline;
     margin-bottom: 1rem;
   }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
   .section-header h2,
   .caption {
     margin: 0;
@@ -245,10 +266,24 @@ function formatBytes(bytes) {
   .tag-chip {
     cursor: pointer;
   }
+  .toggle-tags-button {
+    appearance: none;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    border-radius: 999px;
+    padding: 0.4rem 0.75rem;
+    font: inherit;
+    font-size: 0.82rem;
+    cursor: pointer;
+  }
   .tag-chip.active {
     background: #dbeafe;
     color: #0f172a;
     border-color: #dbeafe;
+  }
+  .tag-chip.is-hidden {
+    display: none;
   }
   .tag span,
   .tag-chip span {
@@ -286,29 +321,10 @@ function formatBytes(bytes) {
   .card-body {
     padding: 1rem;
   }
-  .collection,
-  .filename,
-  .meta {
-    color: var(--muted);
-  }
-  .collection {
-    margin: 0 0 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.75rem;
-  }
   .caption {
     font-size: 1.15rem;
     line-height: 1.35;
-    margin-bottom: 0.65rem;
-  }
-  .filename,
-  .meta {
-    margin: 0.25rem 0;
-    font-size: 0.92rem;
-  }
-  .tags {
-    margin-top: 0.9rem;
+    margin: 0;
   }
   .button {
     display: inline-block;
