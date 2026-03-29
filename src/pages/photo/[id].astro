@@ -36,6 +36,7 @@ function tagHref(tag) {
 }
 
 const detectedFaces = faceData?.faces ?? [];
+const courtesyCredit = (item.credit_line ?? '').replace(', digitized and published by Jarad Ronald Peckenpaugh.', '.');
 ---
 
 <Layout title={`${item.filename} - Ronald Lee Pyer Photo Archive`}>
@@ -157,7 +158,7 @@ const detectedFaces = faceData?.faces ?? [];
           <div><dt>People</dt><dd><a href="/people/">Browse people</a></dd></div>
         </dl>
 
-        <p class="credit"><strong>Suggested courtesy credit:</strong> {item.credit_line}</p>
+        <p class="credit"><strong>Suggested courtesy credit:</strong> {courtesyCredit}</p>
 
         <p class="actions">
           <a class="button primary" href={item.display.src} target="_blank" rel="noreferrer">Open larger image</a>
