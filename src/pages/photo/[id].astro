@@ -11,7 +11,14 @@ export async function getStaticPaths() {
     params: { id: item.id },
     props: {
       item,
-      metadata: descriptionById.get(item.id) ?? null,
+      metadata: (() => {
+        const metadata = descriptionById.get(item.id) ?? null;
+        if (!metadata) return null;
+        return {
+          ...metadata,
+          tags: (metadata.tags ?? []).filter((tag) => !/^book\s+\d+\s*-\s*sheets/i.test(tag.tag)),
+        };
+      })(),
       faceData: facesById.get(item.id) ?? null,
     },
   }));
@@ -32,7 +39,7 @@ function formatBytes(bytes) {
 }
 
 function tagHref(tag) {
-  return `/explore/?tag=${encodeURIComponent(tag)}`;
+  return `/?tag=${encodeURIComponent(tag)}`;
 }
 
 const detectedFaces = faceData?.faces ?? [];
@@ -103,7 +110,7 @@ const saveFilename = `RonPyer_${item.filename}`;
               ))}
             </div>
             <p class="explore-note">
-              These generated tags are browseable in the <a href="/explore/">metadata explorer</a>.
+              These generated tags are browseable on the <a href="/">Explore page</a>.
             </p>
           </section>
         ) : null}
@@ -156,7 +163,7 @@ const saveFilename = `RonPyer_${item.filename}`;
           <div><dt>Scanner</dt><dd>{item.scanner_make ?? 'Unknown'} / {item.scanner_model ?? 'Unknown'}</dd></div>
           <div><dt>Software</dt><dd>{item.software ?? 'Unknown'}</dd></div>
           <div><dt>License</dt><dd>CC0 1.0 Universal</dd></div>
-          <div><dt>Browse with metadata</dt><dd><a href="/explore/">Open explorer</a></dd></div>
+          <div><dt>Browse with metadata</dt><dd><a href="/">Open explore</a></dd></div>
           <div><dt>People</dt><dd><a href="/people/">Browse people</a></dd></div>
         </dl>
 

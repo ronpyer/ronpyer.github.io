@@ -3,6 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import archive from '../data/archive.json';
 import descriptions from '../data/enrichment/descriptions.json';
 
+function isHiddenTag(tag) {
+  return /^book\s+\d+\s*-\s*sheets/i.test(tag);
+}
+
 const archiveItems = archive.items ?? [];
 const descriptionItems = descriptions.items ?? [];
 const descriptionById = new Map(descriptionItems.map((item) => [item.id, item]));
@@ -14,7 +18,7 @@ const items = archiveItems
       ...item,
       description: enrichment?.description ?? null,
       searchText: enrichment?.search_text ?? `${item.filename} ${item.folder}`,
-      tags: enrichment?.tags ?? [],
+      tags: (enrichment?.tags ?? []).filter((tag) => !isHiddenTag(tag.tag)),
     };
   })
   .filter((item) => item.description);
@@ -129,6 +133,34 @@ function formatBytes(bytes) {
     const chips = Array.from(document.querySelectorAll('[data-tag-chip]'));
     const toggleTagsButton = document.getElementById('toggleTagsButton');
     const defaultTagCount = 100;
+    const url = new URL(window.location.href);
+
+    function syncUrl() {
+      const nextUrl = new URL(window.location.href);
+      const search = searchInput?.value.trim() ?? '';
+      const collection = collectionFilter?.value ?? 'all';
+      const tag = tagFilter?.value ?? 'all';
+
+      if (search) {
+        nextUrl.searchParams.set('search', search);
+      } else {
+        nextUrl.searchParams.delete('search');
+      }
+
+      if (collection !== 'all') {
+        nextUrl.searchParams.set('collection', collection);
+      } else {
+        nextUrl.searchParams.delete('collection');
+      }
+
+      if (tag !== 'all') {
+        nextUrl.searchParams.set('tag', tag);
+      } else {
+        nextUrl.searchParams.delete('tag');
+      }
+
+      history.replaceState({}, '', `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`);
+    }
 
     function applyFilters() {
       const search = searchInput?.value.trim().toLowerCase() ?? '';
@@ -152,6 +184,8 @@ function formatBytes(bytes) {
       for (const chip of chips) {
         chip.classList.toggle('active', tag !== 'all' && chip.dataset.tagChip === tag);
       }
+
+      syncUrl();
     }
 
     searchInput?.addEventListener('input', applyFilters);
@@ -178,7 +212,26 @@ function formatBytes(bytes) {
       }
     }
 
+    if (searchInput) {
+      searchInput.value = url.searchParams.get('search') ?? '';
+    }
+
+    if (collectionFilter) {
+      const initialCollection = url.searchParams.get('collection');
+      if (initialCollection && Array.from(collectionFilter.options).some((option) => option.value === initialCollection)) {
+        collectionFilter.value = initialCollection;
+      }
+    }
+
+    if (tagFilter) {
+      const initialTag = url.searchParams.get('tag');
+      if (initialTag && Array.from(tagFilter.options).some((option) => option.value === initialTag)) {
+        tagFilter.value = initialTag;
+      }
+    }
+
     applyTagVisibility(false);
+    applyFilters();
 
     toggleTagsButton?.addEventListener('click', () => {
       const showAll = toggleTagsButton.getAttribute('aria-expanded') !== 'true';
