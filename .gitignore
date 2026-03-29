@@ -1,0 +1,31 @@
+# dependencies
+node_modules/
+
+# local Astro/cache artifacts
+.astro/
+
+# editor/system noise
+.vscode/
+.DS_Store
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# local env files
+.env
+.env.*
+
+# Python/cache leftovers if helper scripts get added later
+__pycache__/
+*.pyc
+.venv/
+
+# Docker/local runtime extras
+*.pid
+
+# IMPORTANT:
+# Keep docs/ tracked because GitHub Pages will publish from /docs
+# Keep public/generated site assets if they are part of the project source
